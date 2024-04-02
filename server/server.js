@@ -5,27 +5,17 @@ import cors from "cors";
 import recordRoutes from "./routes/record.js"
 import { connectToServer } from "./db/connection.js";
 
-import gql from "graphql-tag";
 import { ApolloServer } from "@apollo/server";
-import { buildSubgraphSchema } from "@apollo/subgraph";
 import { expressMiddleware } from "@apollo/server/express4";
 import resolvers from "./resolvers.js";
-import { readFileSync } from "fs";
+import typeDefs from "./typeDefs.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(json());
 
-const typeDefs = gql(
-    readFileSync("schema.graphql", {
-        encoding: "utf-8"
-    })
-);
-
-const server = new ApolloServer({
-    schema: buildSubgraphSchema({ typeDefs, resolvers })
-});
+const server = new ApolloServer({ typeDefs, resolvers });
 
 await server.start();
 

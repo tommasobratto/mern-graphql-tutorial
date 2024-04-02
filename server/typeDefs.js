@@ -1,3 +1,4 @@
+const typeDefs = `#graphql
 type Query {
     record(id: ID!): Record
     records: [Record]
@@ -15,3 +16,6 @@ type Record {
     position: String
     level: String
 }
+`;
+
+export default typeDefs;
