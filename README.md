@@ -20,7 +20,7 @@ Styling is iffy. There are some issues with the default styling found in the Mon
 
 Other changes include the use of ESM module syntax for the Node/Express code.  
 
-## Setup:
+## Setup
 
 Client Terminal
 ```
@@ -37,3 +37,18 @@ node server.js
 ```
 
 The MongoDB connection requires a config.env file in the server folder with a valid ATLAS_URI connection string.
+
+## Setup with Docker
+
+As part of my learning process I've added a basic configuration to replicate a production-like environment using a Docker container.  
+It is nothing special as it's my first foray into Docker, so I've had to tackle serving a production-like build using **serve** (could have made a simple web server using Express, [but alas!](https://create-react-app.dev/docs/deployment/)) and configuring the application for deployment.  
+
+Running in a different environment exposed some issues in the code and app configuration that I had to fix before deploying and testing.  
+
+I did not use any specific tutorial for Docker configuration, just searched around for references to the use of Docker Compose and Dockerfile syntax.
+
+To run with Docker:
+```
+docker-compose up
+```
+
