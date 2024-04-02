@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  server:
+    image: server
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 5000:5000
+      - 9229:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "server.js"]
+  client:
+    image: client
+    build:
+      context: client
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 1234:1234
+    depends_on:
+      - server
